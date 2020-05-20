@@ -1,4 +1,24 @@
-# Learning RSpec
-Source: [RSpec the Right Way by Geoffrey Grosenbach](https://app.pluralsight.com/library/courses/rspec-the-right-way/description)
+# README
 
-This video series starts by teaching you the basic RSpec syntax and the best ways to use it, and then moves on to intermediate topics such as mocks, stubs, and error cases, and then adds Ruby on Rails into the equation, covering factories, code organization, and running tests quickly.
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
