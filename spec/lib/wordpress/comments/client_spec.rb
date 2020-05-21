@@ -5,13 +5,14 @@ require_relative '../../../support/match_date'
 
 describe Wordpress::Comments::Client do
 
-    let(:client) {Wordpress::Comments::Client.new 'http://mashable.com/comments/feed'}
+    let(:client) {Wordpress::Comments::Client.new 'spec/fixtures/feed.xml'}
 
     describe "#initialize" do
 
         it 'store a URL' do
             #create a Client instace with the argument 'http://mashable.com/comments/feed'
-            expect(client.url).to eq 'http://mashable.com/comments/feed'
+            #expect(client.url).to eq 'http://mashable.com/comments/feed'
+            expect(client.url).to eq 'spec/fixtures/feed.xml'
         end
 
     end
@@ -41,6 +42,15 @@ describe Wordpress::Comments::Client do
         it 'extracts the date (redux)' do
             #'Wed, 18 Jul 2012 22:55:57 +000'
             expect(comment[:date]).to match_date '2012-07-18'
+        end
+    end
+
+    describe "#fetch" do
+
+        let(:comments) {client.fetch}
+        
+        it "build comments objects" do
+            expected(comments.length).to eq 30
         end
     end
 end
