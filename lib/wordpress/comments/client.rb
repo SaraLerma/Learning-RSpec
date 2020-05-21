@@ -1,6 +1,7 @@
 #require 'jquery-rails'
 require 'nokogiri'
 require 'date'
+require 'open-uri'
 
 module Wordpress
     module Comments
@@ -10,6 +11,10 @@ module Wordpress
 
             def initialize url
                 @url = url
+            end
+            def fetch
+                xml = get @url
+                parse xml
             end
             def parse xml
                 doc = Nokogiri::XML xml
@@ -21,6 +26,10 @@ module Wordpress
                     item[:date] = DateTime.parse doc_item.at('pubDate').text
                     item
                 end
+            end
+            private
+            def get url
+                open url
             end
         end
     end
