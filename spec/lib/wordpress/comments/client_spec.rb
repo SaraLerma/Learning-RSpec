@@ -29,6 +29,9 @@ describe Wordpress::Comments::Client do
             title= "Comment on The Earliest Photos of Apple’s iPad Hit the Web by Fido"
             expect(comment[:title]).to eq title
         end
+        it 'extracts the name of the commenter' do
+            expect(comment[:commenter]).to eq 'Fido'
+        end
 
     end
 end
