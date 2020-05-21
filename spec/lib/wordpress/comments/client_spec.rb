@@ -1,5 +1,7 @@
 #coding: utf-8
 require_relative '../../../../lib/wordpress/comments/client'
+require_relative '../../../support/match_date'
+
 
 describe Wordpress::Comments::Client do
 
@@ -32,6 +34,13 @@ describe Wordpress::Comments::Client do
         it 'extracts the name of the commenter' do
             expect(comment[:commenter]).to eq 'Fido'
         end
-
+        it 'extracts the date' do
+            #'Wed, 18 Jul 2012 22:55:57 +000'
+            expect(comment[:date].year).to eq 2012
+        end
+        it 'extracts the date (redux)' do
+            #'Wed, 18 Jul 2012 22:55:57 +000'
+            expect(comment[:date]).to match_date '2012-07-18'
+        end
     end
 end
