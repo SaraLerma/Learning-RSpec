@@ -6,6 +6,8 @@ require_relative '../../../support/match_date'
 describe Wordpress::Comments::Client do
 
     let(:client) {Wordpress::Comments::Client.new 'spec/fixtures/feed.xml'}
+    let(:xml) {File.read(File.join('spec', 'fixtures', 'feed.xml'))}
+
 
     describe "#initialize" do
 
@@ -19,8 +21,6 @@ describe Wordpress::Comments::Client do
 
     describe "#parse" do
 
-        let(:xml) {File.read(File.join('spec', 'fixtures', 'feed.xml'))}
-        
         let(:comments) {client.parse xml}
         let(:comment) {comments.first}
 
@@ -49,6 +49,10 @@ describe Wordpress::Comments::Client do
 
         let(:comments) {client.fetch}
         
+        before(:each) do
+            #with stub: client.stub(:get).and_return(xml)
+            client.should_receive(:get).and_return(xml)
+        end
         it "build comments objects" do
             expected(comments.length).to eq 30
         end
